@@ -1,6 +1,7 @@
 #include "analogclock.h"
 #include <QtWidgets>
 #include <QPalette>
+#include <QtDebug>
 
 AnalogClock::AnalogClock(QWidget *parent)
     : QWidget(parent)
@@ -35,7 +36,7 @@ void AnalogClock::paintEvent(QPaintEvent *event)
         QPoint(1, 14),
         QPoint(-1, 14),
         QPoint(-1, -89),
-        QPoint(1, 89),
+        QPoint(1, -89),
     };
 
     const QColor hourColor(palette().color(QPalette::Text));
@@ -71,6 +72,8 @@ void AnalogClock::paintEvent(QPaintEvent *event)
     painter.restore();
 
     painter.setBrush(secondColor);
+
+//    qDebug()<<minuteColor << secondColor; // 示例中的颜色这个版本不支持
 
     painter.save();
     painter.rotate(6.0 * time.second());
