@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QPlainTextEdit>
 #include <QObject>
+#include "highlighter.h"
 
 class CodeEditor : public QPlainTextEdit
 {
@@ -15,6 +16,7 @@ public:
 
     void lineNumberAreaPaintEvent(QPaintEvent *event);
     int lineNumberAreaWidth();
+    void setHighlight();
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
@@ -24,6 +26,7 @@ private slots:
     void updateLineNumberArea(const QRect &rect, int dy);
 private:
     QWidget *lineNumberArea;
+    Highlighter *highlighter;
 };
 
 class LineNumberArea: public QWidget

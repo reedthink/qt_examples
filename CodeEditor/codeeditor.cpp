@@ -1,4 +1,5 @@
 #include "codeeditor.h"
+#include "highlighter.h"
 #include <QtWidgets>
 #include <QPainter>
 
@@ -14,6 +15,7 @@ CodeEditor::CodeEditor(QWidget *parent)
     updateLineNumberAreaWidth(0);
     highlightCurrentLine();
     setWindowTitle(tr("CodeEditor by diy"));
+    setHighlight();
 }
 
 int CodeEditor::lineNumberAreaWidth()
@@ -97,6 +99,23 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
         ++blockNumber;
     }
 
+}
+
+void CodeEditor::setHighlight()
+{
+    QFont font;
+    font.setFamily("Courier");
+    font.setFixedPitch(true);
+    font.setPointSize(10);
+
+//    editor = new QTextEdit;
+//    editor->setFont(font);
+
+    highlighter = new Highlighter(this->document());
+
+//    QFile file("mainwindow.h");
+//    if (file.open(QFile::ReadOnly | QFile::Text))
+//        editor->setPlainText(file.readAll());
 }
 
 CodeEditor::~CodeEditor()
