@@ -1,5 +1,6 @@
 #include "codeeditor.h"
 #include <QtWidgets>
+#include <QPainter>
 
 CodeEditor::CodeEditor(QWidget *parent)
     : QPlainTextEdit(parent)
@@ -12,6 +13,7 @@ CodeEditor::CodeEditor(QWidget *parent)
 
     updateLineNumberAreaWidth(0);
     highlightCurrentLine();
+    setWindowTitle(tr("CodeEditor by diy"));
 }
 
 int CodeEditor::lineNumberAreaWidth()
@@ -73,7 +75,7 @@ void CodeEditor::highlightCurrentLine()
 
 void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
 {
-    QPainter painter(LineNumberArea);
+    QPainter painter(lineNumberArea);
     painter.fillRect(event->rect(), Qt::lightGray);
 
     QTextBlock block = firstVisibleBlock();
@@ -87,14 +89,13 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
         {
             QString number = QString::number(blockNumber+1);
             painter.setPen(Qt::black);
-            painter.drawText(0, top, lineNumberrArea->width(), fontMetrics().height(), Qt::AlignRight, number);
+            painter.drawText(0, top, lineNumberArea->width(), fontMetrics().height(), Qt::AlignRight, number);
         }
+        block = block.next();
+        top = bottom;
+        bottom = top + qRound(blockBoundingRect(block).height());
+        ++blockNumber;
     }
-
-    block = block.next();
-    top = bottom;
-    bottom = top + qRound(blockBoundingRect(block).height());
-    ++blockNumber;
 
 }
 
