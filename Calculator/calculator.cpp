@@ -208,6 +208,17 @@ void Calculator::equalClicked()
             abortOperation();
             return;
         }
+        operand = factorSoFar;
+        factorSoFar = 0.0;
+        pendingMultiplicativeOperator.clear();
+    }
+    if(!pendingAdditiveOperator.isEmpty())
+    {
+        if(!calculate(operand, pendingAdditiveOperator))
+        {
+            abortOperation();
+            return;
+        }
         pendingAdditiveOperator.clear();
     }
     else
