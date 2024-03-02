@@ -74,7 +74,7 @@ Calculator::Calculator(QWidget *parent)
 
     mainLayout->addWidget(squareRootButton, 2, 5);
     mainLayout->addWidget(powerButton, 3, 5);
-    mainLayout->addWidget(reciprocalButton, 3, 5);
+    mainLayout->addWidget(reciprocalButton, 4, 5);
     mainLayout->addWidget(equalButton, 5, 5);
     setLayout(mainLayout);
 
