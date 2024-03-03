@@ -23,19 +23,20 @@ void Widget::FoodIsComing()
 {
     QString strObject = this->sender()->objectName(); //获取信号源
     qDebug()<<strObject;
+    QString generalMsg = tr("Your food is coming!");
 
     QString strMsg;
     if(strObject == "pushButtonAnderson")
     {
-        strMsg = tr("Hello Anderson! Your food is coming!");
+        strMsg = tr("Hello Anderson! ") + generalMsg;
     }
     else if(strObject == "pushButtonBruce")
     {
-        strMsg = tr("Hello Bruce! Your food is coming!");
+        strMsg = tr("Hello Bruce! ") + generalMsg;
     }
     else if(strObject == "pushButtonCastiel")
     {
-        QString generalMsg = tr("Your food is coming!");
+
         strMsg = tr("Hello Castiel! ") + generalMsg;
     }
     else {
